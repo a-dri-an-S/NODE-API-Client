@@ -68,12 +68,12 @@ const App = ({ children, history }) => {
         const graphqlQuery = {
             query: `
         query UserLogin($email: String!, $password: String!) {
-          login(email: $email, password: $password) {
-            token
-            userId
-          }
-        }
-      `,
+            login(email: $email, password: $password) {
+                token
+                userId
+                }
+            }
+        `,
             variables: {
                 email: authData.email,
                 password: authData.password
@@ -127,21 +127,21 @@ const App = ({ children, history }) => {
         setAuthLoading(true);
         const graphqlQuery = {
             query: `
-        mutation CreateNewUser($email: String!, $name: String!, $password: String!) {
-          createUser(userInput: {
-            email: $email, 
-            name: $name, 
-            password: $password
-          }) {
-            _id
-            email
-          }
-        }
-      `,
+                mutation CreateNewUser($email: String!, $name: String!, $password: String!) {
+                    createUser(userInput: {
+                    email: $email, 
+                    name: $name, 
+                    password: $password
+                }) {
+                    _id
+                    email
+                }
+                }
+            `,
             variables: {
-                email: authData.signupForm.email.value,
-                name: authData.signupForm.name.value,
-                password: authData.signupForm.password.value,
+                email: authData.email.value,
+                name: authData.name.value,
+                password: authData.password.value,
             }
         }
         fetch(`http://localhost:8080/graphql`, {
@@ -168,7 +168,7 @@ const App = ({ children, history }) => {
                 console.log(resData);
                 setIsAuth(false);
                 setAuthLoading(false);
-                history.replace('/');
+                // history.replace('/');
             })
             .catch(err => {
                 console.log(err);

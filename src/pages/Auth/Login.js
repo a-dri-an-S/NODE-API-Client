@@ -38,8 +38,12 @@ const Login = ({ loading, onLogin }) => {
                 }
             };
             let formIsValid = true;
+            console.log(updatedForm)
+
             for (const inputName in updatedForm) {
-                formIsValid = formIsValid && updatedForm[inputName].valid;
+                if (inputName !== 'formIsValid') {
+                    formIsValid = formIsValid && updatedForm[inputName].valid;
+                }
             }
             return {
                 ...updatedForm,
@@ -48,17 +52,17 @@ const Login = ({ loading, onLogin }) => {
         });
     };
 
-    const inputBlurHandler = input => {
-        setLoginForm(prevState => {
-            return {
-                ...prevState,
-                [input]: {
-                    ...prevState[input],
-                    touched: true
-                }
-            };
-        });
-    };
+    // const inputBlurHandler = input => {
+    //     setLoginForm(prevState => {
+    //         return {
+    //             ...prevState,
+    //             [input]: {
+    //                 ...prevState[input],
+    //                 touched: true
+    //             }
+    //         };
+    //     });
+    // };
 
     return (
         <Auth>
@@ -76,10 +80,10 @@ const Login = ({ loading, onLogin }) => {
                     type="email"
                     control="input"
                     onChange={inputChangeHandler}
-                    onBlur={inputBlurHandler.bind('email')}
+                    // onBlur={inputBlurHandler.bind('email')}
                     value={loginForm.email.value}
                     valid={loginForm.email.valid}
-                    touched={loginForm.email.touched}
+                    // touched={loginForm.email.touched}
                 />
                 <Input
                     id="password"
@@ -87,10 +91,10 @@ const Login = ({ loading, onLogin }) => {
                     type="password"
                     control="input"
                     onChange={inputChangeHandler}
-                    onBlur={inputBlurHandler.bind('password')}
+                    // onBlur={inputBlurHandler.bind('password')}
                     value={loginForm.password.value}
                     valid={loginForm.password.valid}
-                    touched={loginForm.password.touched}
+                    // touched={loginForm.password.touched}
                 />
                 <Button design="raised" type="submit" loading={loading}>
                     Login
