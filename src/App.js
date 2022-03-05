@@ -217,14 +217,14 @@ const App = ({ children, history }) => {
                                 token={authToken}
                             />
                         </Route>
-                        <Route path="/:postId" component={props => (
+                        <Route path="/:postId" component={
                             <SinglePostPage
-                                {...props}
+                                // {...props}
                                 userId={authUserId}
                                 token={authToken}
                             />
 
-                        )}/>
+                        }/>
                         <Redirect to="/" />
                     </Switch>
                 }
