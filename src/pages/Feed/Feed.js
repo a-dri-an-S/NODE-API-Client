@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import Post from '../../components/Feed/Post/Post';
 import Button from '../../components/Button/Button';
 import FeedEdit from '../../components/Feed/FeedEdit/FeedEdit';
@@ -300,12 +302,10 @@ const Feed = ({ token, userId }) => {
 
   const statusInputChangeHandler = (input, value) => {
     setStatus(value);
-    // this.setState({ status: value });
   };
 
   const deletePostHandler = postId => {
     setPostLoading(true);
-    // this.setState({ postsLoading: true });
     const graphqlQuery = {
       query: `
         mutation DeleteUserPost($id: ID!){
@@ -337,26 +337,20 @@ const Feed = ({ token, userId }) => {
         const updatedPosts = posts.filter(p => p._id !== postId);
         setPosts(updatedPosts);
         setPostLoading(false);
-        // this.setState(prevState => {
-        //   const updatedPosts = prevState.posts.filter(p => p._id !== postId);
-        //   return { posts: updatedPosts, postsLoading: false };
-        // });
+
       })
       .catch(err => {
         console.log(err);
         setPostLoading(false);
-        // this.setState({ postsLoading: false });
       });
   };
 
   const errorHandler = () => {
     setError(null);
-    // this.setState({ error: null });
   };
 
   const catchError = error => {
     setError(error);
-    // this.setState({ error: error });
   };
 
   return (
@@ -423,5 +417,10 @@ const Feed = ({ token, userId }) => {
     </>
   );
 }
+
+Feed.propTypes = {
+  token: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired
+};
 
 export default Feed;
