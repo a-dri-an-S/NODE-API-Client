@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Image from '../../../components/Image/Image';
 import './SinglePost.css';
 
-class SinglePost extends Component {
-  state = {
-    title: '',
-    author: '',
-    date: '',
-    image: '',
-    content: ''
-  };
+const SinglePost = ({ token, userId, match }) => {
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [date, setDate] = useState('');
+  const [image, setImage] = useState('');
+  const [content, setContent] = useState('');
 
-  componentDidMount() {
-    const postId = this.props.match.params.postId;
+
+  useEffect(() => {
+    const postId = match.params.postId;
     const graphqlQuery = {
       query: `
         query FetchSinglePost($id: ID!)
@@ -36,7 +35,7 @@ class SinglePost extends Component {
     fetch(`http://localhost:8080/graphql`, {
       method: "POST",
       headers: {
-        Authorization: 'Bearer ' + this.props.token,
+        Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(graphqlQuery)
@@ -50,33 +49,29 @@ class SinglePost extends Component {
             "Fetching post failed!"
           );
         }
-        this.setState({
-          title: resData.data.post.title,
-          author: resData.data.post.creator.name,
-          image: `http://localhost:8080/${resData.data.post.imageUrl}`,
-          date: new Date(resData.data.post.createdAt).toLocaleDateString('en-US'),
-          content: resData.data.post.content
-        });
+        setTitle(resData.data.post.title);
+        setAuthor(resData.data.post.creator.name);
+        setImage(`http://localhost:8080/${resData.data.post.imageUrl}`);
+        setDate(new Date(resData.data.post.createdAt).toLocaleDateString('en-US'));
+        setContent(resData.data.post.content);
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  }, [token, match]);
 
-  render() {
-    return (
-      <section className="single-post">
-        <h1>{this.state.title}</h1>
-        <h2>
-          Created by {this.state.author} on {this.state.date}
-        </h2>
-        <div className="single-post__image">
-          <Image contain imageUrl={this.state.image} />
-        </div>
-        <p>{this.state.content}</p>
-      </section>
-    );
-  }
-}
+  return (
+    <section className="single-post">
+      <h1>{title}</h1>
+      <h2>
+        Created by {author} on {date}
+      </h2>
+      <div className="single-post__image">
+        <Image contain imageUrl={image} />
+      </div>
+      <p>{content}</p>
+    </section>
+  );
+};
 
 export default SinglePost;
