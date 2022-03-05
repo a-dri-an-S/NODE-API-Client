@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../components/Form/Input/Input';
 import Button from '../../components/Button/Button';
@@ -7,6 +8,8 @@ import Auth from './Auth';
 
 const Signup = ({ onSignup, loading }) => {
 
+  console.log(onSignup);
+  console.log(loading);
   const [signupForm, setSignupForm] = useState({
     email: {
       value: '',
@@ -113,5 +116,10 @@ const Signup = ({ onSignup, loading }) => {
     </Auth>
   );
 };
+
+Signup.propTypes = {
+  onSignup: PropTypes.func.isRequired,
+  loading: PropTypes.func.isRequired
+}
 
 export default Signup;
