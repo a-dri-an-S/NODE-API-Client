@@ -22,7 +22,8 @@ const App = ({ children, history }) => {
     const [authUserId, setAuthUserId] = useState(null);
     const [authLoading, setAuthLoading] = useState(null);
     const [error, setError] = useState(null);
-
+    
+    
     useEffect(() => {
         const token = localStorage.getItem('token');
         const expiryDate = localStorage.getItem('expiryDate');
@@ -36,12 +37,12 @@ const App = ({ children, history }) => {
         const userId = localStorage.getItem('userId');
         const remainingMilliseconds =
             new Date(expiryDate).getTime() - new Date().getTime();
-        setAuthToken(true);
-        setAuthToken(true);
+        setIsAuth(true);
+        setAuthToken(token);
         setAuthUserId(userId);
         setAutoLogout(remainingMilliseconds);
 
-    }, []);
+    }, [authToken, authLoading, isAuth]);
 
     const mobileNavHandler = isOpen => {
         setShowMobileNav(isOpen);
@@ -188,44 +189,45 @@ const App = ({ children, history }) => {
     const errorHandler = () => {
         setError(null);
     };
-
+    
     return (
         <>
-            {!isAuth ?
-                <Switch>
-                    <Route path="/" exact>
-                        <LoginPage
-                            onLogin={loginHandler}
-                            loading={authLoading}
-                        />
-                    </Route>
-                    <Route path="/signup" exact>
-                        <SignupPage
-                            onSignup={signupHandler}
-                            loading={authLoading}
-                        />
-                    </Route>
-                    <Redirect to="/" />
-                </Switch>
-                :
-                <Switch>
-                    <Route path="/" exact>
-                        <FeedPage
-                            userId={authUserId}
-                            token={authToken}
-                        />
-                    </Route>
-                    <Route path="/:postId">
-                        <SinglePostPage
-                            // {...props}
-                            userId={authUserId}
-                            token={authToken}
-                        />
-                    </Route>
-                    <Redirect to="/" />
-                </Switch>
-            }
-            <React.Fragment>
+            <>
+                {!isAuth ?
+                    <Switch>
+                        <Route path="/" exact>
+                            <LoginPage
+                                onLogin={loginHandler}
+                                loading={authLoading}
+                            />
+                        </Route>
+                        <Route path="/signup" exact>
+                            <SignupPage
+                                onSignup={signupHandler}
+                                loading={authLoading}
+                            />
+                        </Route>
+                        <Redirect to="/" />
+                    </Switch>
+                    :
+                    <Switch>
+                        <Route path="/" exact>
+                            <FeedPage
+                                userId={authUserId}
+                                token={authToken}
+                            />
+                        </Route>
+                        <Route path="/:postId">
+                            <SinglePostPage
+                                userId={authUserId}
+                                token={authToken}
+                            />
+                        </Route>
+                        <Redirect to="/" />
+                    </Switch>
+                }
+            </>
+            <>
                 {showBackdrop && (
                     <Backdrop onClick={backdropClickHandler} />
                 )}
@@ -251,8 +253,7 @@ const App = ({ children, history }) => {
                     }
                 />
                 {children}
-            </React.Fragment>
-
+            </>
         </>
     )
 };

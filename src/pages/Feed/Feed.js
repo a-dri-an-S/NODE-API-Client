@@ -19,8 +19,6 @@ const Feed = ({ token, userId }) => {
   const [editLoading, setEditLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
-
   useEffect(() => {
     const graphqlQuery = {
       query: `
@@ -54,9 +52,9 @@ const Feed = ({ token, userId }) => {
 
     loadPosts();
 
-  }, []);
+  }, [token]);
 
-  const loadPosts = direction => {
+  const loadPosts = (direction)=> {
     if (direction) {
       setPostLoading(true);
       setPosts([]);
@@ -117,16 +115,6 @@ const Feed = ({ token, userId }) => {
         }));
         setTotalPosts(resData.data.posts.totalPosts);
         setPostLoading(false);
-        // this.setState({
-        // posts: resData.data.posts.posts.map(post => {
-        //   return {
-        //     ...post,
-        //     imagePath: post.imageUrl
-        //   };
-        // }),
-        // totalPosts: resData.data.posts.totalPosts,
-        // postsLoading: false
-        // });
       })
       .catch(catchError);
   };
@@ -169,31 +157,21 @@ const Feed = ({ token, userId }) => {
 
   const newPostHandler = () => {
     setIsEditing(true);
-    // this.setState({ isEditing: true });
   };
 
   const startEditPostHandler = postId => {
     const loadedPost = { ...posts.find(p => p._id === postId) };
     setIsEditing(true);
     setEditPost(loadedPost);
-
-    // return {
-    //   isEditing: true,
-    //   editPost: loadedPost
-    // };
   };
 
   const cancelEditHandler = () => {
     setIsEditing(false);
     setEditPost(null);
-    // this.setState({ isEditing: false, editPost: null });
   };
 
   const finishEditHandler = postData => {
     setEditLoading(true);
-    // this.setState({
-    //   editLoading: true
-    // });
     const formData = new FormData();
     formData.append('image', postData.image);
     if (editPost) {
@@ -309,29 +287,6 @@ const Feed = ({ token, userId }) => {
         setEditPost(null);
         setEditLoading(false);
         setTotalPosts(updatedTotalPosts);
-        // this.setState(prevState => {
-        //   let updatedPosts = [...prevState.posts];
-        //   let updatedTotalPosts = prevState.totalPosts;
-        //   if (prevState.editPost) {
-        //     const postIndex = prevState.posts.findIndex(
-        //       p => p._id === prevState.editPost._id
-        //     );
-        //     updatedPosts[postIndex] = post;
-        //   } else {
-        //     updatedTotalPosts++;
-        //     if (prevState.posts.length >= 2) {
-        //       updatedPosts.pop();
-        //     }
-        //     updatedPosts.unshift(post);
-        //   }
-        //   return {
-        //     posts: updatedPosts,
-        //     isEditing: false,
-        //     editPost: null,
-        //     editLoading: false,
-        //     totalPosts: updatedTotalPosts
-        //   };
-        // });
       })
       .catch(err => {
         console.log(err);
@@ -339,12 +294,7 @@ const Feed = ({ token, userId }) => {
         setEditPost(null);
         setEditLoading(false);
         setError(err);
-        // this.setState({
-        //   isEditing: false,
-        //   editPost: null,
-        //   editLoading: false,
-        //   error: err
-        // });
+
       });
   };
 

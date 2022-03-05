@@ -27,8 +27,8 @@ const Signup = ({ onSignup, loading }) => {
       validators: [required]
     },
     formIsValid: false
-
-  })
+  });
+  console.log(signupForm);
 
   const inputChangeHandler = (input, value) => {
     setSignupForm(prevState => {
@@ -58,17 +58,17 @@ const Signup = ({ onSignup, loading }) => {
     });
   };
 
-  // const inputBlurHandler = input => {
-  //   setSignupForm(prevState => {
-  //     return {
-  //       ...prevState,
-  //       [input]: {
-  //         ...prevState[input],
-  //         touched: true
-  //       }
-  //     };
-  //   });
-  // };
+  const inputBlurHandler = input => {
+    setSignupForm(prevState => {
+      return {
+        ...prevState,
+        [input]: {
+          ...prevState[input],
+          touched: true
+        }
+      };
+    });
+  };
 
   return (
     <Auth>
@@ -79,10 +79,10 @@ const Signup = ({ onSignup, loading }) => {
           type="email"
           control="input"
           onChange={inputChangeHandler}
-          // onBlur={inputBlurHandler.bind('email')}
+          onBlur={() => inputBlurHandler('email')}
           value={signupForm.email.value}
           valid={signupForm.email.valid}
-          // touched={signupForm.email.touched}
+          touched={signupForm.email.touched}
         />
         <Input
           id="name"
@@ -90,10 +90,10 @@ const Signup = ({ onSignup, loading }) => {
           type="text"
           control="input"
           onChange={inputChangeHandler}
-          // onBlur={inputBlurHandler.bind('name')}
+          onBlur={() => inputBlurHandler('name')}
           value={signupForm.name.value}
           valid={signupForm.name.valid}
-          // touched={signupForm.name.touched}
+          touched={signupForm.name.touched}
         />
         <Input
           id="password"
@@ -101,10 +101,10 @@ const Signup = ({ onSignup, loading }) => {
           type="password"
           control="input"
           onChange={inputChangeHandler}
-          // onBlur={inputBlurHandler.bind(this, 'password')}
+          onBlur={() => inputBlurHandler('password')}
           value={signupForm.password.value}
           valid={signupForm.password.valid}
-          // touched={signupForm.password.touched}
+          touched={signupForm.password.touched}
         />
         <Button design="raised" type="submit" loading={loading}>
           Signup

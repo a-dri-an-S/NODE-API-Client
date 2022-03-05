@@ -38,8 +38,6 @@ const Login = ({ loading, onLogin }) => {
                 }
             };
             let formIsValid = true;
-            console.log(updatedForm)
-
             for (const inputName in updatedForm) {
                 if (inputName === 'email' || inputName === 'password') {
                     formIsValid = formIsValid && updatedForm[inputName].valid;
@@ -80,7 +78,7 @@ const Login = ({ loading, onLogin }) => {
                     type="email"
                     control="input"
                     onChange={inputChangeHandler}
-                    onBlur={inputBlurHandler.bind('email')}
+                    onBlur={() => inputBlurHandler('email')}
                     value={loginForm.email.value}
                     valid={loginForm.email.valid}
                     touched={loginForm.email.touched}
@@ -91,7 +89,7 @@ const Login = ({ loading, onLogin }) => {
                     type="password"
                     control="input"
                     onChange={inputChangeHandler}
-                    onBlur={inputBlurHandler.bind('password')}
+                    onBlur={() => inputBlurHandler('password')}
                     value={loginForm.password.value}
                     valid={loginForm.password.valid}
                     touched={loginForm.password.touched}
