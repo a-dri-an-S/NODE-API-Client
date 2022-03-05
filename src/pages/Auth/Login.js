@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../components/Form/Input/Input';
 import Button from '../../components/Button/Button';
@@ -6,7 +7,6 @@ import { required, length, email } from '../../util/validators';
 import Auth from './Auth';
 
 const Login = ({ loading, onLogin }) => {
-
     const [loginForm, setLoginForm] = useState({
         email: {
             value: '',
@@ -100,6 +100,11 @@ const Login = ({ loading, onLogin }) => {
             </form>
         </Auth>
     );
-}
+};
+
+Login.propTypes = {
+    loading: PropTypes.bool,
+    isLogin: PropTypes.func.isRequired
+};
 
 export default Login;
