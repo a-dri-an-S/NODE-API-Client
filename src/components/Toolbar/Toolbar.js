@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Toolbar.css';
 
@@ -7,5 +8,9 @@ const toolbar = ({ children }) => (
         {children}
     </div>
 );
+
+toolbar.propTypes = {
+    children: PropTypes.node.isRequired
+}
 
 export default toolbar;
