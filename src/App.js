@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Layout from './components/Layout/Layout';
 import Backdrop from './components/Backdrop/Backdrop';
@@ -259,5 +260,10 @@ const App = ({ children, history }) => {
         </>
     )
 };
+
+App.propTypes = {
+    children: PropTypes.node.isRequired,
+    history: PropTypes.node
+}
 
 export default withRouter(App);
