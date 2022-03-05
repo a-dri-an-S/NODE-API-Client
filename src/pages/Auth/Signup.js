@@ -47,7 +47,7 @@ const Signup = ({ onSignup, loading }) => {
       
       let formIsValid = true;
       for (const inputName in updatedForm) {
-        if (inputName !== 'formIsValid') {
+        if (inputName === 'email' || inputName === 'name' || inputName === 'password') {
           formIsValid = formIsValid && updatedForm[inputName].valid;
         }
       }

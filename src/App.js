@@ -87,6 +87,7 @@ const App = ({ children, history }) => {
             body: JSON.stringify(graphqlQuery)
         })
             .then(res => {
+                console.log(res);
                 return res.json();
             })
             .then(resData => {
@@ -168,7 +169,7 @@ const App = ({ children, history }) => {
                 console.log(resData);
                 setIsAuth(false);
                 setAuthLoading(false);
-                // history.replace('/');
+                history.replace('/');
             })
             .catch(err => {
                 console.log(err);
