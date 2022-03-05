@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Toolbar.css';
 
-const toolbar = props => (
+const toolbar = ({ children }) => (
     <div className="toolbar">
-       {props.children}
+        {children}
     </div>
 );
 
