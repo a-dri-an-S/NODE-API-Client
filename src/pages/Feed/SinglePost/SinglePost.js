@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Image from '../../../components/Image/Image';
 import './SinglePost.css';
@@ -73,5 +74,11 @@ const SinglePost = ({ token, userId, match }) => {
     </section>
   );
 };
+
+SinglePost.propTypes = {
+  token: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired
+}
 
 export default SinglePost;
