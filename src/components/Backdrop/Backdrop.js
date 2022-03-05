@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import './Backdrop.css';
 
@@ -11,5 +12,10 @@ const backdrop = ({ open, onClick }) =>
     />,
     document.getElementById('backdrop-root')
   );
+
+backdrop.propTypes = {
+  open: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired
+}; 
 
 export default backdrop;
