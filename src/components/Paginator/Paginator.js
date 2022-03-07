@@ -1,23 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Paginator.css';
 
-const paginator = props => (
+const paginator = ({ onPrevious, onNext, lastPage, currentPage, children }) => (
   <div className="paginator">
-    {props.children}
+    {children}
     <div className="paginator__controls">
-      {props.currentPage > 1 && (
-        <button className="paginator__control" onClick={props.onPrevious}>
+      {currentPage > 1 && (
+        <button className="paginator__control" onClick={onPrevious}>
           Previous
         </button>
       )}
-      {props.currentPage < props.lastPage && (
-        <button className="paginator__control" onClick={props.onNext}>
+      {currentPage < lastPage && (
+        <button className="paginator__control" onClick={onNext}>
           Next
         </button>
       )}
     </div>
   </div>
 );
+
+paginator.propTypes = {
+  onPrevious: PropTypes.func, 
+  onNext: PropTypes.func, 
+  lastPage: PropTypes.number, 
+  currentPage: PropTypes.number
+};
 
 export default paginator;
