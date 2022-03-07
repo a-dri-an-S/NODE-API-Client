@@ -39,7 +39,6 @@ const button = ({ link, mode, design, onClick, disabled, loading, type, children
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     type: PropTypes.node,
-    children: PropTypes.node
   };
 
 export default button;

@@ -39,6 +39,7 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
   const prevPostForm = usePrevious(postForm);
 
   useEffect(() => {
+    console.log(editing, selectedPost)
     if (
       editing &&
       prevEditing !== editing &&
@@ -90,17 +91,15 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
           value: files ? files[0] : value
         }
       };
-      let formIsValid = true;
-      for (const inputName in updatedForm) {
-        if (inputName === 'title' || inputName === 'image' || inputName === 'content') {
-          formIsValid = formIsValid && updatedForm[inputName].valid;
-        }
-      }
+
       return {
-        ...updatedForm,
-        formIsValid: formIsValid
+        ...updatedForm
       };
     });
+
+    if (postForm.title.valid && postForm.image.valid && postForm.content.valid) {
+      setFormIsValid(true)
+    };
   };
 
   const inputBlurHandler = input => {
@@ -129,7 +128,7 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
     };
     onFinishEdit(post);
     setPostForm(POST_FORM);
-    setFormIsValid(false);
+    setFormIsValid(true);
     setImagePreview(null);
   };
 
@@ -140,7 +139,7 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
           <>
             <Backdrop onClick={cancelPostChangeHandler} />
             <Modal
-              title="New Post"
+              title={selectedPost ? "Edit Post" : "New Post"}
               acceptEnabled={formIsValid}
               onCancelModal={cancelPostChangeHandler}
               onAcceptModal={acceptPostChangeHandler}

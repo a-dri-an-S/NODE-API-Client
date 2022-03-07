@@ -16,8 +16,8 @@ const image = ({ imageUrl, contain, left }) => (
 
 image.propTypes = {
   imageUrl: PropTypes.string,
-  contain: PropTypes.string,
-  left: PropTypes.string
+  contain: PropTypes.bool,
+  left: PropTypes.bool
 };
 
 export default image;

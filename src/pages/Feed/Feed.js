@@ -301,7 +301,6 @@ const Feed = ({ token, userId }) => {
         setEditPost(null);
         setEditLoading(false);
         setError(err);
-
       });
   };
 

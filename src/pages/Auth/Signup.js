@@ -115,7 +115,7 @@ const Signup = ({ onSignup, loading }) => {
 
 Signup.propTypes = {
   onSignup: PropTypes.func,
-  loading: PropTypes.func
+  loading: PropTypes.bool
 }
 
 export default Signup;
