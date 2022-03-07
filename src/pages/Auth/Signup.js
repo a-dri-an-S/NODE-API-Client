@@ -114,8 +114,8 @@ const Signup = ({ onSignup, loading }) => {
 };
 
 Signup.propTypes = {
-  onSignup: PropTypes.func.isRequired,
-  loading: PropTypes.func.isRequired
+  onSignup: PropTypes.func,
+  loading: PropTypes.func
 }
 
 export default Signup;

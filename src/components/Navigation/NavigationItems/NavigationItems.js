@@ -29,10 +29,8 @@ const navigationItems = ({ isAuth, onChoose, mobile, onLogout }) => [
 ];
 
 navigationItems.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
-  onChoose: PropTypes.node.isRequired,
-  mobile: PropTypes.node.isRequired,
-  onLogout: PropTypes.func.isRequired
+  isAuth: PropTypes.bool,
+  onLogout: PropTypes.func
 };
 
 export default navigationItems;

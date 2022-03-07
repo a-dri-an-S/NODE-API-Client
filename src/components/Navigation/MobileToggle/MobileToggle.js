@@ -12,7 +12,7 @@ const mobileToggle = ({ onOpen }) => (
 );
 
 mobileToggle.propTypes = {
-  onOpen: PropTypes.func.isRequired
+  onOpen: PropTypes.func
 };
 
 export default mobileToggle;

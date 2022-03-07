@@ -21,8 +21,8 @@ const errorHandler = ({ error, onHandle }) => (
 );
 
 errorHandler.propTypes ={
-  error: PropTypes.object.isRequired,
-  onHandle: PropTypes.func.isRequired
+  error: PropTypes.object,
+  onHandle: PropTypes.func
 };
 
 export default errorHandler;

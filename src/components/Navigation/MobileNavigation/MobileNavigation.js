@@ -20,11 +20,10 @@ const mobileNavigation = ({ open, mobile, onChooseItem, onLogout, isAuth }) => (
 );
 
 mobileNavigation.propTypes = {
-  open: PropTypes.bool.isRequired,
-  mobile: PropTypes.node.isRequired,
-  onChooseItem: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired
+  open: PropTypes.bool,
+  onChooseItem: PropTypes.func,
+  onLogout: PropTypes.func,
+  isAuth: PropTypes.bool
 };
 
 export default mobileNavigation;

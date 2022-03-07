@@ -30,12 +30,12 @@ const modal = ({ title, onCancelModal, onAcceptModal, acceptEnabled, isLoading, 
   );
 
   modal.propTypes = {
-    title: PropTypes.string.isRequired,
-    onCancelModal: PropTypes.func.isRequired,
-    onAcceptModal: PropTypes.func.isRequired,
-    acceptEnabled: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired
+    title: PropTypes.string,
+    onCancelModal: PropTypes.func,
+    onAcceptModal: PropTypes.func,
+    acceptEnabled: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    children: PropTypes.node
   };
 
 export default modal;

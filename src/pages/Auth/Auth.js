@@ -6,7 +6,7 @@ import './Auth.css';
 const auth = ({ children }) => <section className="auth-form">{children}</section>;
 
 auth.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node
 }
 
 export default auth;

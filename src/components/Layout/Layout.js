@@ -12,9 +12,9 @@ const layout = ({ header, mobileNav, children }) => (
 );
 
 layout.propTypes = {
-  header: PropTypes.node.isRequired,
-  mobileNav: PropTypes.node.isRequired,
-  children: PropTypes.node.isRequired
+  header: PropTypes.node,
+  mobileNav: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default layout;

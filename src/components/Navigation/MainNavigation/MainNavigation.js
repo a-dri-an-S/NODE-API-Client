@@ -24,9 +24,9 @@ const mainNavigation = ({ onOpenMobileNav, onLogout, isAuth }) => (
 );
 
 mainNavigation.propTypes = {
-  onOpenMobileNav: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired
+  onOpenMobileNav: PropTypes.func,
+  onLogout: PropTypes.func,
+  isAuth: PropTypes.bool
 }
 
 export default mainNavigation;

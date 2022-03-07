@@ -14,8 +14,8 @@ const backdrop = ({ open, onClick }) =>
   );
 
 backdrop.propTypes = {
-  open: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired
+  open: PropTypes.node,
+  onClick: PropTypes.func
 }; 
 
 export default backdrop;

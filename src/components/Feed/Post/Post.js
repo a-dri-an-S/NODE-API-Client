@@ -27,12 +27,12 @@ const post = ({ id, author, date, title, onStartEdit, onDelete }) => (
 );
 
 post.propTypes = {
-  id: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  onStartEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  id: PropTypes.string,
+  author: PropTypes.string,
+  date: PropTypes.string,
+  title: PropTypes.string,
+  onStartEdit: PropTypes.func,
+  onDelete: PropTypes.func
 };
 
 export default post;

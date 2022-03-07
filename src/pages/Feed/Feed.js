@@ -426,8 +426,8 @@ const Feed = ({ token, userId }) => {
 }
 
 Feed.propTypes = {
-  token: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired
+  token: PropTypes.string,
+  userId: PropTypes.string
 };
 
 export default Feed;

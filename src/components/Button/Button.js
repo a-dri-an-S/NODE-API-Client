@@ -32,14 +32,14 @@ const button = ({ link, mode, design, onClick, disabled, loading, type, children
   );
 
   button.propTypes = {
-    link: PropTypes.node.isRequired,
-    mode: PropTypes.string.isRequired,
-    design: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    disabled: PropTypes.bool.isRequired,
-    loading: PropTypes.bool.isRequired,
-    type: PropTypes.node.isRequired,
-    children: PropTypes.node.isRequired
+    link: PropTypes.node,
+    mode: PropTypes.string,
+    design: PropTypes.string,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool,
+    type: PropTypes.node,
+    children: PropTypes.node
   };
 
 export default button;
