@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Backdrop from '../../Backdrop/Backdrop';
 import Modal from '../../Modal/Modal';
@@ -191,5 +192,15 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
     </section>
   )
 };
+
+FeedEdit.propTypes = {
+  editing: PropTypes.bool,
+  prevEditing: PropTypes.bool,
+  selectedPost: PropTypes.object,
+  prevSelectedPost: PropTypes.object,
+  loading: PropTypes.bool,
+  onCancelEdit: PropTypes.func,
+  onFinishEdit: PropTypes.func
+}
 
 export default FeedEdit;

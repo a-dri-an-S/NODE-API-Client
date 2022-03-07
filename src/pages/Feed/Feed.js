@@ -364,8 +364,8 @@ const Feed = ({ token, userId }) => {
       <FeedEdit
         editing={isEditing}
         prevEditing={prevEditing}
-        prevSelectedPost={prevSelectedPost}
         selectedPost={editPost}
+        prevSelectedPost={prevSelectedPost}
         loading={editLoading}
         onCancelEdit={cancelEditHandler}
         onFinishEdit={finishEditHandler}
