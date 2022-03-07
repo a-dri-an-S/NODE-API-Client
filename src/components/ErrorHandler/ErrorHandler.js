@@ -1,22 +1,28 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Backdrop from '../Backdrop/Backdrop';
 import Modal from '../Modal/Modal';
 
-const errorHandler = props => (
+const errorHandler = ({ error, onHandle }) => (
   <Fragment>
-    {props.error && <Backdrop onClick={props.onHandle} />}
-    {props.error && (
+    {error && <Backdrop onClick={onHandle} />}
+    {error && (
       <Modal
         title="An Error Occurred"
-        onCancelModal={props.onHandle}
-        onAcceptModal={props.onHandle}
+        onCancelModal={onHandle}
+        onAcceptModal={onHandle}
         acceptEnabled
       >
-        <p>{props.error.message}</p>
+        <p>{error.message}</p>
       </Modal>
     )}
   </Fragment>
 );
+
+errorHandler.propTypes ={
+  error: PropTypes.object.isRequired,
+  onHandle: PropTypes.func.isRequired
+};
 
 export default errorHandler;
