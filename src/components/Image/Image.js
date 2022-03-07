@@ -1,16 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Image.css';
 
-const image = props => (
+const image = ({ imageUrl, contain, left }) => (
   <div
     className="image"
     style={{
-      backgroundImage: `url('${props.imageUrl}')`,
-      backgroundSize: props.contain ? 'contain' : 'cover',
-      backgroundPosition: props.left ? 'left' : 'center'
+      backgroundImage: `url('${imageUrl}')`,
+      backgroundSize: contain ? 'contain' : 'cover',
+      backgroundPosition: left ? 'left' : 'center'
     }}
   />
 );
+
+image.propTypes = {
+  imageUrl: PropTypes.string,
+  contain: PropTypes.string,
+  left: PropTypes.string
+};
 
 export default image;
