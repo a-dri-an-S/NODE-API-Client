@@ -1,33 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './Button.css';
 
-const button = props =>
-  !props.link ? (
+const button = ({ link, mode, design, onClick, disabled, loading, type, children }) =>
+  !link ? (
     <button
       className={[
         'button',
-        `button--${props.design}`,
-        `button--${props.mode}`
+        `button--${design}`,
+        `button--${mode}`
       ].join(' ')}
-      onClick={props.onClick}
-      disabled={props.disabled || props.loading}
-      type={props.type}
+      onClick={onClick}
+      disabled={disabled || loading}
+      type={type}
     >
-      {props.loading ? 'Loading...' : props.children}
+      {loading ? 'Loading...' : children}
     </button>
   ) : (
     <Link
       className={[
         'button',
-        `button--${props.design}`,
-        `button--${props.mode}`
+        `button--${design}`,
+        `button--${mode}`
       ].join(' ')}
-      to={props.link}
+      to={link}
     >
-      {props.children}
+      {children}
     </Link>
   );
+
+  button.propTypes = {
+    link: PropTypes.node.isRequired,
+    mode: PropTypes.string.isRequired,
+    design: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
+    type: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
+  };
 
 export default button;
