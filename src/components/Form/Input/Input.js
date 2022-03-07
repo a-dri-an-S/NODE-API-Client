@@ -1,40 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Input.css';
 
-const input = props => (
+const input = ({ type, placeholder, control, onChange, value, id, label, valid, touched, required, onBlur, rows }) => (
   <div className="input">
-    {props.label && <label htmlFor={props.id}>{props.label}</label>}
-    {props.control === 'input' && (
+    {label && <label htmlFor={id}>{label}</label>}
+    {control === 'input' && (
       <input
         className={[
-          !props.valid ? 'invalid' : 'valid',
-          props.touched ? 'touched' : 'untouched'
+          !valid ? 'invalid' : 'valid',
+          touched ? 'touched' : 'untouched'
         ].join(' ')}
-        type={props.type}
-        id={props.id}
-        required={props.required}
-        value={props.value}
-        placeholder={props.placeholder}
-        onChange={e => props.onChange(props.id, e.target.value, e.target.files)}
-        onBlur={props.onBlur}
+        type={type}
+        id={id}
+        required={required}
+        value={value}
+        placeholder={placeholder}
+        onChange={e => onChange(id, e.target.value, e.target.files)}
+        onBlur={onBlur}
       />
     )}
-    {props.control === 'textarea' && (
+    {control === 'textarea' && (
       <textarea
         className={[
-          !props.valid ? 'invalid' : 'valid',
-          props.touched ? 'touched' : 'untouched'
+          !valid ? 'invalid' : 'valid',
+          touched ? 'touched' : 'untouched'
         ].join(' ')}
-        id={props.id}
-        rows={props.rows}
-        required={props.required}
-        value={props.value}
-        onChange={e => props.onChange(props.id, e.target.value)}
-        onBlur={props.onBlur}
+        id={id}
+        rows={rows}
+        required={required}
+        value={value}
+        onChange={e => onChange(id, e.target.value)}
+        onBlur={onBlur}
       />
     )}
   </div>
 );
+
+input.propTypes = {
+  type: PropTypes.string, 
+  placeholder: PropTypes.string, 
+  control: PropTypes.string, 
+  onChange: PropTypes.func, 
+  value: PropTypes.string
+}
 
 export default input;
