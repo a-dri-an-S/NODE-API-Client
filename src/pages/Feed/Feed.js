@@ -407,8 +407,8 @@ const Feed = ({ token, userId }) => {
                 title={post.title}
                 image={post.imageUrl}
                 content={post.content}
-                onStartEdit={startEditPostHandler.bind(this, post._id)}
-                onDelete={deletePostHandler.bind(this, post._id)}
+                onStartEdit={() => startEditPostHandler(post._id)}
+                onDelete={() => deletePostHandler(post._id)}
               />
             ))}
           </Paginator>
