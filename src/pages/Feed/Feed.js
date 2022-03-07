@@ -10,6 +10,8 @@ import Loader from '../../components/Loader/Loader';
 import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 import './Feed.css';
 
+import { usePrevious } from '../../hooks/usePrevious';
+
 const Feed = ({ token, userId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -20,6 +22,9 @@ const Feed = ({ token, userId }) => {
   const [postLoading, setPostLoading] = useState(true);
   const [editLoading, setEditLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const prevEditing = usePrevious(isEditing);
+  const prevSelectedPost = usePrevious(editPost);
 
   useEffect(() => {
     const graphqlQuery = {
@@ -358,6 +363,8 @@ const Feed = ({ token, userId }) => {
       <ErrorHandler error={error} onHandle={errorHandler} />
       <FeedEdit
         editing={isEditing}
+        prevEditing={prevEditing}
+        prevSelectedPost={prevSelectedPost}
         selectedPost={editPost}
         loading={editLoading}
         onCancelEdit={cancelEditHandler}

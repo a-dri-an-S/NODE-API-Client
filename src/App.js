@@ -262,8 +262,7 @@ const App = ({ children, history }) => {
 };
 
 App.propTypes = {
-    children: PropTypes.node.isRequired,
-    history: PropTypes.node
+    children: PropTypes.node
 }
 
 export default withRouter(App);
