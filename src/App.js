@@ -239,7 +239,7 @@ const App = ({ children, history }) => {
                     header={
                         <Toolbar>
                             <MainNavigation
-                                onOpenMobileNav={mobileNavHandler.bind(true)}
+                                onOpenMobileNav={() => mobileNavHandler(true)}
                                 onLogout={logoutHandler}
                                 isAuth={isAuth}
                             />
@@ -249,7 +249,7 @@ const App = ({ children, history }) => {
                         <MobileNavigation
                             open={showMobileNav}
                             mobile
-                            onChooseItem={mobileNavHandler.bind(false)}
+                            onChooseItem={() => mobileNavHandler(false)}
                             onLogout={logoutHandler}
                             isAuth={isAuth}
                         />
