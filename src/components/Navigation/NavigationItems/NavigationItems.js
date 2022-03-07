@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './NavigationItems.css';
 
@@ -9,22 +10,29 @@ const navItems = [
   { id: 'signup', text: 'Signup', link: '/signup', auth: false }
 ];
 
-const navigationItems = props => [
-  ...navItems.filter(item => item.auth === props.isAuth).map(item => (
+const navigationItems = ({ isAuth, onChoose, mobile, onLogout }) => [
+  ...navItems.filter(item => item.auth === isAuth).map(item => (
     <li
       key={item.id}
-      className={['navigation-item', props.mobile ? 'mobile' : ''].join(' ')}
+      className={['navigation-item', mobile ? 'mobile' : ''].join(' ')}
     >
-      <NavLink to={item.link} exact onClick={props.onChoose}>
+      <NavLink to={item.link} exact onClick={onChoose}>
         {item.text}
       </NavLink>
     </li>
   )),
-  props.isAuth && (
+  isAuth && (
     <li className="navigation-item" key="logout">
-      <button onClick={props.onLogout}>Logout</button>
+      <button onClick={onLogout}>Logout</button>
     </li>
   )
 ];
+
+navigationItems.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+  onChoose: PropTypes.node.isRequired,
+  mobile: PropTypes.node.isRequired,
+  onLogout: PropTypes.func.isRequired
+};
 
 export default navigationItems;
