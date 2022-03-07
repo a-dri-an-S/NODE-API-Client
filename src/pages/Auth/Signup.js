@@ -7,9 +7,6 @@ import { required, length, email } from '../../util/validators';
 import Auth from './Auth';
 
 const Signup = ({ onSignup, loading }) => {
-
-  console.log(onSignup);
-  console.log(loading);
   const [signupForm, setSignupForm] = useState({
     email: {
       value: '',
@@ -31,7 +28,6 @@ const Signup = ({ onSignup, loading }) => {
     },
     formIsValid: false
   });
-  console.log(signupForm);
 
   const inputChangeHandler = (input, value) => {
     setSignupForm(prevState => {

@@ -11,6 +11,6 @@ const toolbar = ({ children }) => (
 
 toolbar.propTypes = {
     children: PropTypes.node.isRequired
-}
+};
 
 export default toolbar;
