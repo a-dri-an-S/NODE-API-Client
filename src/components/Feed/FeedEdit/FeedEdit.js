@@ -73,7 +73,7 @@ const FeedEdit = ({ editing, prevEditing, selectedPost, prevSelectedPost, loadin
         .then(b64 => {
           setImagePreview(b64)
         })
-        .catch(e => {
+        .catch(err => {
           setImagePreview(null);
         });
     }
